@@ -3,9 +3,10 @@
 """
 from contextlib import asynccontextmanager
 
-from fastapi import FastAPI
+from fastapi import FastAPI, APIRouter
 
 from src.config import get_settings, Settings
+from src.apis import router
 
 
 def create_app() -> FastAPI:
@@ -28,7 +29,8 @@ def create_app() -> FastAPI:
 
 
 def register_router(settings: Settings, app: FastAPI):
-    pass
+    router = APIRouter()
+    app.include_router(router, prefix=settings.global_prefix)
 
 
 def register_logger(settings: Settings, app: FastAPI):

@@ -13,6 +13,7 @@ class Settings(BaseSettings):
     description: str = "A Fastapi Services"
     secret_key: SecretStr
     fastapi_env: str
+    global_prefix: str = ""
 
     model_config = ConfigDict(
         env_file=os.path.join(BASE_DIR, ".env"),
